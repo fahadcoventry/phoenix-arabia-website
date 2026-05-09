@@ -1,18 +1,19 @@
 <?php
 // ═══════════════════════════════════════════════════════════
 // Phoenix Arabia — Configuration
-// IMPORTANT: Edit DB credentials below before deploying
+// Railway Ready
 // ═══════════════════════════════════════════════════════════
 
-// ── Database (Hostinger) ──
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'u665392070_phoenix');
-define('DB_USER', 'u665392070_phoenix');
-define('DB_PASS', 'CHANGE_THIS_TO_YOUR_DATABASE_PASSWORD');
+// ── Database Railway MySQL ──
+define('DB_HOST', getenv('MYSQLHOST') ?: 'localhost');
+define('DB_PORT', getenv('MYSQLPORT') ?: '3306');
+define('DB_NAME', getenv('MYSQLDATABASE') ?: 'u665392070_phoenix');
+define('DB_USER', getenv('MYSQLUSER') ?: 'u665392070_phoenix');
+define('DB_PASS', getenv('MYSQLPASSWORD') ?: '');
 define('DB_CHARSET', 'utf8mb4');
 
 // ── Site Configuration ──
-define('SITE_URL', 'https://www.phoenix.com.sa');
+define('SITE_URL', 'https://phoenix-arabia-website-production.up.railway.app');
 define('SITE_NAME', 'Phoenix Arabia');
 define('SITE_LEGAL_NAME', 'Phoenix Arabia Contracting Co. Ltd.');
 define('SITE_TAGLINE', 'Industrial Supply & RFQ Marketplace');
@@ -33,12 +34,11 @@ define('OFFICE_EMAIL_RFQ', 'rfq@phoenix.com.sa');
 define('OFFICE_EMAIL_MD', 'fahad@phoenix.com.sa');
 
 // ── Security ──
-// Generate a unique random key. Run: php -r "echo bin2hex(random_bytes(32));"
-define('CSRF_SECRET', 'CHANGE_THIS_TO_A_64_CHARACTER_RANDOM_HEX_STRING_USING_THE_COMMAND_ABOVE');
-define('SESSION_LIFETIME', 7200); // 2 hours
+define('CSRF_SECRET', getenv('CSRF_SECRET') ?: '9a5c1d87f3a64b2e91c0a44f8276e19b5f2c7a8d0e6b314f9c5a7e3d2b1f8046');
+define('SESSION_LIFETIME', 7200);
 
 // ── File Uploads ──
-define('UPLOAD_MAX_SIZE', 10 * 1024 * 1024); // 10 MB
+define('UPLOAD_MAX_SIZE', 10 * 1024 * 1024);
 define('UPLOAD_ALLOWED_EXT', ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'jpg', 'jpeg', 'png', 'dwg']);
 define('UPLOAD_ALLOWED_MIME', [
     'application/pdf',
@@ -53,26 +53,18 @@ define('UPLOAD_ALLOWED_MIME', [
 ]);
 
 // ── Environment ──
-define('IS_PRODUCTION', strpos($_SERVER['HTTP_HOST'] ?? '', 'phoenix.com.sa') !== false);
+define('IS_PRODUCTION', true);
 
-// Error reporting based on environment
-if (IS_PRODUCTION) {
-    error_reporting(0);
-    ini_set('display_errors', '0');
-    ini_set('log_errors', '1');
-    ini_set('error_log', __DIR__ . '/../logs/php-errors.log');
-} else {
-    error_reporting(E_ALL);
-    ini_set('display_errors', '1');
-}
+// ── Error Reporting ──
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+ini_set('log_errors', '1');
 
 // ── Session Security ──
 ini_set('session.cookie_httponly', '1');
 ini_set('session.cookie_samesite', 'Lax');
 ini_set('session.use_strict_mode', '1');
-if (IS_PRODUCTION) {
-    ini_set('session.cookie_secure', '1');
-}
+ini_set('session.cookie_secure', '1');
 ini_set('session.gc_maxlifetime', SESSION_LIFETIME);
 
 if (session_status() === PHP_SESSION_NONE) {
@@ -86,4 +78,3 @@ date_default_timezone_set('Asia/Riyadh');
 if (!isset($_SESSION['lang'])) {
     $_SESSION['lang'] = 'en';
 }
-
