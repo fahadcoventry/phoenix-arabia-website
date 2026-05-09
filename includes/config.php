@@ -1,19 +1,18 @@
 <?php
 // ═══════════════════════════════════════════════════════════
 // Phoenix Arabia — Configuration
-// Railway Ready
+// Railway Compatible Version
 // ═══════════════════════════════════════════════════════════
 
-// ── Database Railway MySQL ──
-define('DB_HOST', getenv('MYSQLHOST') ?: 'localhost');
-define('DB_PORT', getenv('MYSQLPORT') ?: '3306');
-define('DB_NAME', getenv('MYSQLDATABASE') ?: 'u665392070_phoenix');
-define('DB_USER', getenv('MYSQLUSER') ?: 'u665392070_phoenix');
-define('DB_PASS', getenv('MYSQLPASSWORD') ?: '');
+// ── Database (Railway MySQL) ──
+define('DB_HOST', getenv('MYSQLHOST'));
+define('DB_NAME', getenv('MYSQLDATABASE'));
+define('DB_USER', getenv('MYSQLUSER'));
+define('DB_PASS', getenv('MYSQLPASSWORD'));
 define('DB_CHARSET', 'utf8mb4');
 
 // ── Site Configuration ──
-define('SITE_URL', 'https://phoenix-arabia-website-production.up.railway.app');
+define('SITE_URL', 'https://www.phoenix.com.sa');
 define('SITE_NAME', 'Phoenix Arabia');
 define('SITE_LEGAL_NAME', 'Phoenix Arabia Contracting Co. Ltd.');
 define('SITE_TAGLINE', 'Industrial Supply & RFQ Marketplace');
@@ -34,12 +33,24 @@ define('OFFICE_EMAIL_RFQ', 'rfq@phoenix.com.sa');
 define('OFFICE_EMAIL_MD', 'fahad@phoenix.com.sa');
 
 // ── Security ──
-define('CSRF_SECRET', getenv('CSRF_SECRET') ?: '9a5c1d87f3a64b2e91c0a44f8276e19b5f2c7a8d0e6b314f9c5a7e3d2b1f8046');
+define('CSRF_SECRET', 'phoenix_arabia_secure_random_key_2026');
 define('SESSION_LIFETIME', 7200);
 
 // ── File Uploads ──
 define('UPLOAD_MAX_SIZE', 10 * 1024 * 1024);
-define('UPLOAD_ALLOWED_EXT', ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'jpg', 'jpeg', 'png', 'dwg']);
+
+define('UPLOAD_ALLOWED_EXT', [
+    'pdf',
+    'doc',
+    'docx',
+    'xls',
+    'xlsx',
+    'jpg',
+    'jpeg',
+    'png',
+    'dwg'
+]);
+
 define('UPLOAD_ALLOWED_MIME', [
     'application/pdf',
     'application/msword',
@@ -49,22 +60,40 @@ define('UPLOAD_ALLOWED_MIME', [
     'image/jpeg',
     'image/png',
     'image/x-dwg',
-    'application/x-dwg',
+    'application/x-dwg'
 ]);
 
 // ── Environment ──
-define('IS_PRODUCTION', true);
+define(
+    'IS_PRODUCTION',
+    strpos($_SERVER['HTTP_HOST'] ?? '', 'phoenix.com.sa') !== false
+);
 
 // ── Error Reporting ──
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
-ini_set('log_errors', '1');
+if (IS_PRODUCTION) {
+
+    error_reporting(0);
+
+    ini_set('display_errors', '0');
+
+    ini_set('log_errors', '1');
+
+} else {
+
+    error_reporting(E_ALL);
+
+    ini_set('display_errors', '1');
+}
 
 // ── Session Security ──
 ini_set('session.cookie_httponly', '1');
 ini_set('session.cookie_samesite', 'Lax');
 ini_set('session.use_strict_mode', '1');
-ini_set('session.cookie_secure', '1');
+
+if (IS_PRODUCTION) {
+    ini_set('session.cookie_secure', '1');
+}
+
 ini_set('session.gc_maxlifetime', SESSION_LIFETIME);
 
 if (session_status() === PHP_SESSION_NONE) {
@@ -74,7 +103,8 @@ if (session_status() === PHP_SESSION_NONE) {
 // ── Timezone ──
 date_default_timezone_set('Asia/Riyadh');
 
-// ── Default language ──
+// ── Default Language ──
 if (!isset($_SESSION['lang'])) {
     $_SESSION['lang'] = 'en';
 }
+?>
