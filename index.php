@@ -8,12 +8,9 @@ $categories = db()->query("SELECT * FROM categories WHERE is_active=1 ORDER BY s
 $brands = db()->query("SELECT * FROM brands WHERE is_visible=1 ORDER BY brand_name")->fetchAll();
 $industries = db()->query("SELECT * FROM industry_pages WHERE is_visible=1 ORDER BY industry_name")->fetchAll();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -30,11 +27,33 @@ $industries = db()->query("SELECT * FROM industry_pages WHERE is_visible=1 ORDER
 <link rel="canonical" href="<?= canonical('index.php') ?>">
 
 <?= og_tags(
-'Phoenix Arabia | Industrial Supply & RFQ Marketplace',
-'Saudi Aramco Approved Vendor providing industrial supply, RFQ workflow, MTO pricing, and procurement gateway for EPC contractors and industrial buyers.'
+  'Phoenix Arabia | Industrial Supply & RFQ Marketplace',
+  'Saudi Aramco Approved Vendor providing industrial supply, RFQ workflow, MTO pricing, and procurement gateway for EPC contractors and industrial buyers.'
 ) ?>
 
-<link rel="stylesheet" href="assets/style.css">
-<link rel="stylesheet" href="assets/main.css">
-
 </head>
+<body>
+
+<header>
+    <h1>Phoenix Arabia™</h1>
+    <p>Industrial Supply & RFQ Marketplace</p>
+</header>
+
+<section>
+    <h2>Featured Products</h2>
+
+    <?php foreach($products as $product): ?>
+        <div style="margin-bottom:20px;">
+            <h3><?= htmlspecialchars($product['name']) ?></h3>
+
+            <p><?= htmlspecialchars($product['short_description']) ?></p>
+
+            <p><strong>Brand:</strong> <?= htmlspecialchars($product['brand']) ?></p>
+
+            <p><strong>Category:</strong> <?= htmlspecialchars($product['category']) ?></p>
+        </div>
+    <?php endforeach; ?>
+</section>
+
+</body>
+</html>
