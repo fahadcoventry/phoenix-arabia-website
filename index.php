@@ -8,10 +8,14 @@ $categories = db()->query("SELECT * FROM categories WHERE is_active=1 ORDER BY s
 $brands = db()->query("SELECT * FROM brands WHERE is_visible=1 ORDER BY brand_name")->fetchAll();
 $industries = db()->query("SELECT * FROM industry_pages WHERE is_visible=1 ORDER BY industry_name")->fetchAll();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title><?= seo_title('Phoenix Arabia | Industrial Supply & RFQ Marketplace | Saudi Aramco Approved Vendor') ?></title>
@@ -26,34 +30,59 @@ $industries = db()->query("SELECT * FROM industry_pages WHERE is_visible=1 ORDER
 
 <link rel="canonical" href="<?= canonical('index.php') ?>">
 
+<link rel="stylesheet" href="customer.css">
+
 <?= og_tags(
-  'Phoenix Arabia | Industrial Supply & RFQ Marketplace',
-  'Saudi Aramco Approved Vendor providing industrial supply, RFQ workflow, MTO pricing, and procurement gateway for EPC contractors and industrial buyers.'
+'Phoenix Arabia | Industrial Supply & RFQ Marketplace',
+'Saudi Aramco Approved Vendor providing industrial supply, RFQ workflow, MTO pricing, and procurement gateway for EPC contractors and industrial buyers.'
 ) ?>
 
 </head>
+
 <body>
 
-<header>
-    <h1>Phoenix Arabia™</h1>
-    <p>Industrial Supply & RFQ Marketplace</p>
+<header class="hero">
+
+<div class="container">
+
+<h1>Phoenix Arabia™</h1>
+
+<p>Industrial Supply & RFQ Marketplace</p>
+
+</div>
+
 </header>
 
-<section>
-    <h2>Featured Products</h2>
+<section class="products-section">
 
-    <?php foreach($products as $product): ?>
-        <div style="margin-bottom:20px;">
-            <h3><?= htmlspecialchars($product['name']) ?></h3>
+<div class="container">
 
-            <p><?= htmlspecialchars($product['short_description']) ?></p>
+<h2>Featured Products</h2>
 
-            <p><strong>Brand:</strong> <?= htmlspecialchars($product['brand']) ?></p>
+<div class="products-grid">
 
-            <p><strong>Category:</strong> <?= htmlspecialchars($product['category']) ?></p>
-        </div>
-    <?php endforeach; ?>
+<?php foreach($products as $product): ?>
+
+<div class="product-card">
+
+<h3><?= htmlspecialchars($product['name']) ?></h3>
+
+<p><?= htmlspecialchars($product['short_description']) ?></p>
+
+<p><strong>Brand:</strong> <?= htmlspecialchars($product['brand']) ?></p>
+
+<p><strong>Category:</strong> <?= htmlspecialchars($product['category']) ?></p>
+
+</div>
+
+<?php endforeach; ?>
+
+</div>
+
+</div>
+
 </section>
 
 </body>
+
 </html>
