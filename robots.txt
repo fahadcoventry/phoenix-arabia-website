@@ -1,0 +1,24 @@
+User-agent: *
+Allow: /
+Disallow: /staff/
+Disallow: /customer/
+Disallow: /includes/
+Disallow: /uploads/suppliers/
+Disallow: /uploads/certificates/
+Disallow: /uploads/boq/
+Disallow: /add_to_cart.php
+Disallow: /submit_rfq.php
+Disallow: /*?cart=
+Disallow: /*?action=
+
+Sitemap: https://www.phoenix.com.sa/sitemap.php
+
+# Crawl-delay for aggressive bots
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Disallow: /
