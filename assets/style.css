@@ -1,80 +1,225 @@
 body{
     margin:0;
     font-family:Arial,sans-serif;
-    background:#f4f6f9;
-    color:#0b1f3a;
+    background:#f7f7f4;
+    color:#1f2933;
 }
 
 .container{
     width:90%;
-    max-width:1180px;
+    max-width:1100px;
+    margin:auto;
+}
+
+.top-hero{
+    padding:50px 0 25px;
+    text-align:center;
+}
+
+.top-hero h1{
+    display:inline-block;
+    margin:0;
+    padding:18px 45px 4px;
+    border:2px solid #0f5fa8;
+    border-radius:14px 14px 0 0;
+    background:#eaf5ff;
+    color:#0b4f8a;
+    font-size:26px;
+}
+
+.top-hero p{
     margin:0 auto;
+    padding:0 45px 14px;
+    display:block;
+    width:max-content;
+    border:2px solid #0f5fa8;
+    border-top:0;
+    border-radius:0 0 14px 14px;
+    background:#eaf5ff;
+    color:#0b4f8a;
+    font-size:18px;
 }
 
-.hero{
-    background:#08264a;
-    color:#fff;
-    padding:80px 0;
-    border-bottom:5px solid #c8a24c;
+.site-map{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+    padding:20px 0 70px;
 }
 
-.hero h1{
-    font-size:64px;
-    margin:0 0 10px;
+.map-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:55px;
+    margin-top:35px;
 }
 
-.hero p{
-    font-size:28px;
-    color:#d8dee8;
+.map-column{
+    text-align:center;
 }
 
-.products-section{
-    padding:60px 0;
+.map-column h2{
+    margin:0;
+    padding:16px;
+    border-radius:12px;
+    font-size:22px;
 }
 
-.products-section h2{
-    font-size:48px;
-    margin-bottom:40px;
+.map-column p{
+    margin:4px 0 25px;
+    font-size:18px;
+}
+
+.map-column a{
+    display:block;
+    text-decoration:none;
+    margin:10px 0;
+    padding:15px 12px;
+    border-radius:10px;
+    font-size:20px;
+    font-weight:600;
+}
+
+.public h2,
+.public a{
+    background:#dff3ee;
+    border:1px solid #149174;
+    color:#075f4d;
+}
+
+.customer h2,
+.customer a{
+    background:#fff0dc;
+    border:1px solid #c1843a;
+    color:#6b3b0d;
+}
+
+.staff h2,
+.staff a{
+    background:#ecebff;
+    border:1px solid #7267d8;
+    color:#34308a;
+}
+
+.map-column a.shared{
+    background:#f1f0ea;
+    border:1px solid #aaa;
+    color:#555;
+}
+
+.infra-box,
+.database-box{
+    margin:55px auto 0;
+    padding:24px;
+    text-align:center;
+    border-radius:12px;
+    max-width:1000px;
+}
+
+.infra-box{
+    background:#f1f0ea;
+    border:1px solid #aaa;
+}
+
+.database-box{
+    background:#fff0ea;
+    border:1px solid #d36b43;
+    color:#9b3417;
+}
+
+.infra-box h2,
+.database-box h2{
+    margin:0 0 8px;
+}
+
+.infra-box p,
+.database-box p{
+    margin:6px 0;
+    font-size:18px;
+}
+
+.bottom-layer{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    margin-top:50px;
+}
+
+.security-box,
+.seo-box{
+    text-align:center;
+    padding:24px;
+    border-radius:12px;
+}
+
+.security-box{
+    background:#eef8e9;
+    border:1px solid #75a85b;
+    color:#2d691f;
+}
+
+.seo-box{
+    background:#eaf5ff;
+    border:1px solid #3986c8;
+    color:#075a9f;
+}
+
+.products-preview{
+    margin-top:70px;
+}
+
+.products-preview h2{
+    text-align:center;
+    font-size:34px;
     color:#08264a;
 }
 
 .products-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-    gap:30px;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:24px;
+    margin-top:30px;
 }
 
 .product-card{
     background:#fff;
-    border-radius:18px;
-    padding:30px;
-    box-shadow:0 4px 20px rgba(0,0,0,0.08);
+    border-radius:16px;
+    padding:26px;
+    box-shadow:0 5px 18px rgba(0,0,0,0.08);
 }
 
 .product-card h3{
-    font-size:24px;
-    margin-bottom:20px;
     color:#08264a;
+    margin-top:0;
 }
 
 .product-card p{
-    font-size:18px;
-    line-height:1.8;
-    color:#333;
+    line-height:1.7;
 }
 
-.product-meta{
-    margin-top:18px;
-    font-size:16px;
-    color:#555;
-}
-
-.badge{
+.product-card span{
     display:inline-block;
+    margin-top:12px;
+    padding:8px 16px;
     background:#08264a;
     color:#fff;
-    padding:8px 16px;
-    border-radius:30px;
-    font-size:14px;
-    margin-top:20px;
+    border-radius:20px;
+}
+
+@media(max-width:900px){
+    .map-grid,
+    .bottom-layer{
+        grid-template-columns:1fr;
+    }
+
+    .top-hero h1{
+        font-size:22px;
+        padding:16px 24px 4px;
+    }
+
+    .top-hero p{
+        width:auto;
+        max-width:80%;
+        padding:0 24px 14px;
+    }
 }
