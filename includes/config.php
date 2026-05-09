@@ -5,11 +5,11 @@
 // ═══════════════════════════════════════════════════════════
 
 // ── Database Railway MySQL ──
-define('DB_HOST', getenv('MYSQLHOST') ?: 'localhost');
-define('DB_PORT', getenv('MYSQLPORT') ?: '3306');
-define('DB_NAME', getenv('MYSQLDATABASE') ?: '');
-define('DB_USER', getenv('MYSQLUSER') ?: '');
-define('DB_PASS', getenv('MYSQLPASSWORD') ?: '');
+define('DB_HOST', getenv('MYSQLHOST') ?: getenv('MYSQL_HOST') ?: 'mysql.railway.internal');
+define('DB_PORT', getenv('MYSQLPORT') ?: getenv('MYSQL_PORT') ?: '3306');
+define('DB_NAME', getenv('MYSQLDATABASE') ?: getenv('MYSQL_DATABASE') ?: 'railway');
+define('DB_USER', getenv('MYSQLUSER') ?: getenv('MYSQL_USER') ?: 'root');
+define('DB_PASS', getenv('MYSQLPASSWORD') ?: getenv('MYSQL_ROOT_PASSWORD') ?: '');
 define('DB_CHARSET', 'utf8mb4');
 
 // ── Site Configuration ──
@@ -39,7 +39,19 @@ define('SESSION_LIFETIME', 7200);
 
 // ── File Uploads ──
 define('UPLOAD_MAX_SIZE', 10 * 1024 * 1024);
-define('UPLOAD_ALLOWED_EXT', ['pdf', 'doc', 'docx', 'xls', 'xlsx', 'jpg', 'jpeg', 'png', 'dwg']);
+
+define('UPLOAD_ALLOWED_EXT', [
+    'pdf',
+    'doc',
+    'docx',
+    'xls',
+    'xlsx',
+    'jpg',
+    'jpeg',
+    'png',
+    'dwg'
+]);
+
 define('UPLOAD_ALLOWED_MIME', [
     'application/pdf',
     'application/msword',
